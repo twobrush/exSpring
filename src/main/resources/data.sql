@@ -6,6 +6,7 @@
 
 -- MEMBER 테이블 생성 
 -- MEM_ID, MEM_PASS, MEM_NAME, MEM_POINT 컬럼을 정의
+
 CREATE TABLE member
 ( mem_id VARCHAR(50) PRIMARY KEY,
   mem_pass VARCHAR(50),
