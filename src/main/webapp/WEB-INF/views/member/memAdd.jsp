@@ -11,10 +11,12 @@
 <!-- 	<c:url /> 주소만들어주는 jstl 태크 -->
 	<form action="${pageContext.request.contextPath}/member/add.do" method="post">
 	id : <input type="text" name="memId" /><br />
-	pass : <input type="text" name="memPass" /><br />
+	pass : <input type="password" name="memPass" /><br />
 	Name : <input type="text" name="memName" /><br />
 	Point : <input type="text" name="memPoint"  /><br />
 	 <input type="submit" />
-</form>
+	 <hr />
+	 <a href="${pageContext.request.contextPath}/member/list.do">목록으로 이동</a>
+</form> 
 </body>
 </html>

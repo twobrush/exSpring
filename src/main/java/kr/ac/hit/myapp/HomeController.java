@@ -33,12 +33,12 @@ public class HomeController {
 		// 스프링에서 컨트롤러의 데이터를 JSP로 전달하기 위해서는 컨트롤러 메서드의 파라미터로
 		// Map, Model, ModelMap 타입의 객체를 받은 후, 그 객체에 데이터를 저장하면,
 		//JSP에서 그 이름을 저장했던 데이터를 꺼내서 사용 가능
-		model.addAttribute("serverTime", formattedDate );
+//		model.addAttribute("serverTime", formattedDate );
 		// 모델 객체에 "serverTime"라는 이름으로 formattedDate를 저장
 		// JSP에서는 ${serverTime}라는 표현으로 꺼내서 사용 가능
 		
 		// 스프링 컨트롤러의 메서드에서 문자열(String)을 반환하면, 스프링은 이것을 뷰(JSP)이름으로 해석한다.
-		return "home";
+		return "redirect:/member/list.do";
 		// 스프링 설정 파일(servlet-context.xml)에 등록된 InternalResourceViewResolver에 
 		// 설정한 접두어(prefix)와 접미어(suffix)를 반환된 뷰이름의 앞 뒤로 붙여서 만든 JSP파일로 이동(forward)
 	}

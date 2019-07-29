@@ -27,10 +27,11 @@ CREATE TABLE bbs
   bbs_writer VARCHAR(50),
   bbs_reg_date DATETIME DEFAULT CURRENT_TIMESTAMP 
 -- , bbs_mod_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
--- , bbs_count NUMERIC(10,0)
--- , FOREIGN KEY ('bbs_writer') REFERENCES 'member' ('mem_id')
+ , bbs_count NUMERIC(10,0)
+ , FOREIGN KEY (bbs_writer) REFERENCES member (mem_id)
 );
 
+select * from bbs;
 -- member 테이블에 레코드 1개 추가
 -- mem_id는 'a001', mem_pass는 '1234', 
 -- mem_name은 '고길동', mem_point는 100로 저장
@@ -64,3 +65,14 @@ CREATE TABLE reply
 --  ,FOREIGN KEY (rep_bbs_no) REFERENCES bbs (bbs_no)
 --  ,FOREIGN KEY (rep_writer) REFERENCES member (mem_id)
 );
+
+
+--상품테이블 : 상품번호 상품명, 상품가격,상품설명 (제조일자,유통기한 , 상품이미지)
+CREATE TABLE product
+( prod_no INT PRIMARY KEY AUTO_INCREMENT, 
+  prod_name VARCHAR(100),
+  prod_price INT
+);
+select * from product;
+
+DROP TABLE product;
