@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h1>회원가입</h1>
+	<%@include file="/WEB-INF/views/comm/menu.jsp" %>
 <!-- 	<c:url /> 주소만들어주는 jstl 태크 -->
 	<form action="${pageContext.request.contextPath}/member/add.do" method="post">
 	id : <input type="text" name="memId" /><br />

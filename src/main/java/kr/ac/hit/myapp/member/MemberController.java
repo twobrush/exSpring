@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -59,6 +59,32 @@ public class MemberController {
 		return "redirect:/member/list.do";
 	}
 	
+	@RequestMapping(value="/member/login.do",method=RequestMethod.GET)
+	public String loginForm() {
+		return "member/login";
+	}
+	
+	@RequestMapping(value="/member/login.do",method=RequestMethod.POST)
+	public String login(MemberVo vo, HttpSession session) { //스프링이 실행시 세션객체를 전달
+		// 사용자가 입력한 아이디/비밀번호와 일치하는 회원 정보 조회
+		MemberVo mvo = memberService.selectLoginUser(vo);
+		if (mvo==null) { //일치하는 회원이 없는 경우 == 로그인 실패
+			return "member/login"; //다시 로그인 화면 출력
+		}
+		// mvo!=null : 로그인 성공 
+		// 로그인한 사용자 정보(mvo)를 세션에 "loginUser" 라는 이름으로 저장
+		session.setAttribute("loginUser", mvo);
+		return "redirect:/bbs/list.do"; //게시판(글목록)으로 이동
+	}
+	
+	@RequestMapping("/member/logout.do")
+	public String logout(HttpSession session) {
+		//로그아웃 == 세션에 저장된 로그인 정보를 삭제
+//		session.setAttribute("loginUser", null);//세션에 "loginUser"라는 이름으로 null을 저장
+//		session.removeAttribute("loginUser");//세션에서 "loginUser" 속성 자체를 제거
+		session.invalidate(); //세션 객체 자체를 삭제 (하고 새로 생성)
+		return "redirect:/member/login.do";
+	}
 	
 	
 	
